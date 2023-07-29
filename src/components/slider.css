@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap");
+div.scrollmenu {
+  padding-left: 3%;
+  font-family: "Times New Roman";
+  background-color: black;
+  overflow: auto;
+  white-space: nowrap;
+  height: 30px;
+}
+
+div.scrollmenu .tags {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  font-size: 80%;
+  text-decoration: none;
+  padding-top: 10px;
+  margin-right: 4%;
+}
+
+div.scrollmenu .tags:hover {
+  background-color: #777;
+}
