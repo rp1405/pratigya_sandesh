@@ -7,7 +7,7 @@ const Loading = () => {
     alignItems: "center",
     justifyContent: "center",
     height: "50vh",
-    backgroundColor: "#f9f9f9",
+    backgroundColor: "white",
   };
 
   const loadingSpinnerStyle = {
