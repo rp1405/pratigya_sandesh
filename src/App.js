@@ -5,6 +5,7 @@ import "./App.css";
 import Home from "./components/home";
 import About from "./components/about";
 import Today from "./components/today";
+import Admin from "./components/admin";
 function App() {
   return (
     <div style={{ margin: "0px" }}>
@@ -16,6 +17,7 @@ function App() {
         <Route path="/date">
           <Route path=":id" element={<Today />} />
         </Route>
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </div>
   );
