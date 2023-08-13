@@ -3,6 +3,7 @@ import { storage } from "../firebase";
 import { ref, uploadBytes } from "firebase/storage";
 import fullDate from "./date";
 import Loading from "./loading";
+import { Base64Converter, pdfToPng } from "../converter";
 const fileInputStyles = {
   fileInputContainer: {
     display: "flex",
@@ -46,15 +47,35 @@ const fileInputStyles = {
 export default function Datapusher() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [isLoading, setIsLoading] = useState(0);
+  const folder = "/copies/" + fullDate + "/";
   const uploadFile = async () => {
     if (selectedFile == null) {
       alert("Please select a file");
       return;
     } else {
       setIsLoading(1);
-      const fileRef = ref(storage, "copies/" + fullDate);
       try {
-        await uploadBytes(fileRef, selectedFile);
+        const base64String = await Base64Converter(selectedFile);
+        //console.log(base64String);
+        const images = await pdfToPng(base64String, selectedFile.name);
+        console.log(images.data.Files);
+        const imageData = images.data.Files;
+        imageData.map((obj, ind) => {
+          const url = obj.Url;
+          console.log(url);
+          fetch(url)
+            .then((res) => {
+              return res.blob();
+            })
+            .then((blob) => {
+              console.log(blob);
+              const fileRef = ref(storage, folder + ind);
+              uploadBytes(fileRef, blob);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        });
         setIsLoading(0);
         alert("Successfully uploaded");
       } catch (error) {

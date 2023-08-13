@@ -6,7 +6,9 @@ import Home from "./components/home";
 import About from "./components/about";
 import Today from "./components/today";
 import Admin from "./components/admin";
+import Test from "./components/test";
 function App() {
+  // return <Test />;
   return (
     <div style={{ margin: "0px" }}>
       <Header />
