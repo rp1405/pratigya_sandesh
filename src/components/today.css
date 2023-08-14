@@ -1,3 +1,41 @@
 .newspaper {
   margin-top: 10px;
 }
+/* ... your existing styles ... */
+
+/* ... your existing styles ... */
+
+.image-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.image-container.zoomed {
+  cursor: zoom-out;
+}
+
+.image-container.zoomed::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  opacity: 1;
+}
+
+.image-container.zoomed img {
+  transform: scale(2);
+  transition: transform 0.3s ease;
+}
+
+.image-container.zoomed:hover::before {
+  /* Use JavaScript to set the top and left properties */
+  /* For example: */
+  /* top: calc(50% - 20px); */
+  /* left: calc(50% - 20px); */
+  opacity: 0;
+}
