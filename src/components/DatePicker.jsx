@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import { makeDate2 } from "./date";
-function DatePicker() {
+import { makeDate, makeDate2 } from "./date";
+function DatePicker({ setParamDate }) {
   const [showCalendar, setShowCalendar] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [displayDate, setDisplayDate] = useState(makeDate2(selectedDate));
@@ -14,6 +14,8 @@ function DatePicker() {
     setSelectedDate(newDate);
     setShowCalendar(false); // Hide calendar after selecting a date
     setDisplayDate(makeDate2(newDate));
+    setParamDate(makeDate(newDate));
+    console.log(paramDate);
   };
 
   const buttonStyle = {
@@ -65,6 +67,7 @@ function DatePicker() {
     cursor: "pointer",
     transition: "background-color 0.3s, transform 0.2s",
   };
+  const paramDate = makeDate(selectedDate);
   return (
     <div style={outerDiv}>
       <div style={dateDiv}>
