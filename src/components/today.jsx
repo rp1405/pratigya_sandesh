@@ -15,18 +15,17 @@ export default function Today() {
   useEffect(() => {
     setImages([]);
     const fileRef = ref(storage, "/copies/" + paramDate + "/");
-    console.log(paramDate);
-    console.log("rerender");
-    listAll(fileRef).then((items) => {
-      items.items.forEach((itemRef) => {
-        getDownloadURL(itemRef).then((url) => {
-          setImages((prev) => {
-            return [...prev, url];
-          });
-          console.log(images);
+
+    const func = async () => {
+      const items = await listAll(fileRef);
+      items.items.map(async (itemRef) => {
+        const url = await getDownloadURL(itemRef);
+        setImages((prev) => {
+          return [...prev, url];
         });
       });
-    });
+    };
+    func();
   }, [paramDate]);
   function createSlide(obj, ind) {
     return (
