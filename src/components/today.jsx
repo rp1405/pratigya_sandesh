@@ -13,6 +13,7 @@ export default function Today() {
   const [images, setImages] = useState([]);
   const [paramDate, setParamDate] = useState(fullDate);
   useEffect(() => {
+    setImages([]);
     const fileRef = ref(storage, "/copies/" + paramDate + "/");
     console.log(paramDate);
     console.log("rerender");

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { storage } from "../firebase";
 import { ref, uploadBytes } from "firebase/storage";
-import fullDate from "./date";
+import fullDate, { makeDate, makeDate2 } from "./date";
 import Loading from "./loading";
 import { Base64Converter, pdfToPng } from "../converter";
+import DatePicker from "./DatePicker";
 const fileInputStyles = {
   fileInputContainer: {
     display: "flex",
@@ -11,6 +12,7 @@ const fileInputStyles = {
     justifyContent: "center",
     flexDirection: "row",
     margin: "20px",
+    marginBottom: "10px",
     color: "white",
   },
   fileLabel: {
@@ -42,12 +44,18 @@ const fileInputStyles = {
     fontSize: "16px",
     transition: "background-color 1s",
   },
+  dateAndUpload: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
 };
 
 export default function Datapusher() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [isLoading, setIsLoading] = useState(0);
-  const folder = "/copies/" + fullDate + "/";
+  const [paramDate, setParamDate] = useState(makeDate2(new Date()));
+  const folder = "/copies/" + paramDate + "/";
   const uploadFile = async () => {
     if (selectedFile == null) {
       alert("Please select a file");
@@ -91,26 +99,31 @@ export default function Datapusher() {
   return isLoading ? (
     <Loading />
   ) : (
-    <div style={fileInputStyles.fileInputContainer}>
-      <input
-        type="file"
-        id="file-input"
-        onChange={handleFileChange}
-        style={fileInputStyles.inputFile}
-      />
-      <label
-        htmlFor="file-input"
-        className="file-label"
-        style={{
-          ...fileInputStyles.fileLabel,
-          ...(selectedFile ? fileInputStyles.fileLabelHover : null),
-        }}
-      >
-        {selectedFile ? selectedFile.name : "Choose a file"}
-      </label>
-      <button style={fileInputStyles.button} onClick={uploadFile}>
-        Upload
-      </button>
+    <div>
+      <div style={fileInputStyles.fileInputContainer}>
+        <input
+          type="file"
+          id="file-input"
+          onChange={handleFileChange}
+          style={fileInputStyles.inputFile}
+        />
+        <label
+          htmlFor="file-input"
+          className="file-label"
+          style={{
+            ...fileInputStyles.fileLabel,
+            ...(selectedFile ? fileInputStyles.fileLabelHover : null),
+          }}
+        >
+          {selectedFile ? selectedFile.name : "Choose a file"}
+        </label>
+      </div>
+      <div style={fileInputStyles.dateAndUpload}>
+        <DatePicker setParamDate={setParamDate} />
+        <button style={fileInputStyles.button} onClick={uploadFile}>
+          Upload
+        </button>
+      </div>
     </div>
   );
 }
