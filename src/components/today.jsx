@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import "react-responsive-carousel/lib/styles/carousel.min.css";
-// import { Carousel } from "react-responsive-carousel";
 import LightGallery from "lightgallery/react";
 import lgZoom from "lightgallery/plugins/zoom";
 import lgVideo from "lightgallery/plugins/video";
@@ -32,7 +30,7 @@ export default function Today() {
   const imageClass = {
     maxWidth: "100vw",
     position: "absolute",
-    top: showCalendar ? "70vh" : "22vh",
+    top: showCalendar ? "440px" : "150px",
   };
   useEffect(() => {
     setImages([]);
@@ -54,7 +52,7 @@ export default function Today() {
   }, [paramDate]);
   function createSlide(obj, i) {
     const ind = (i + totalPages + 1) % totalPages;
-    console.log(totalPages);
+    // console.log(totalPages);
     return (
       <a href={images[ind]}>
         <img

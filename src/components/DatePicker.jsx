@@ -40,8 +40,7 @@ function DatePicker({ setParamDate, showCalendar, setShowCalendar }) {
     padding: "1rem",
     backgroundColor: "white",
     borderRadius: "4px",
-    width: "47vh",
-    maxWidth: "47vh",
+    height: "300px",
     margin: "0 auto", // Center the container horizontally
     display: showCalendar ? "block" : "none",
   };
