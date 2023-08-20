@@ -23,7 +23,7 @@ export function Base64Converter(file) {
 }
 export async function pdfToPng(base64String, name) {
   const folder = await axios.post(
-    `https://v2.convertapi.com/convert/pdf/to/png?Secret=W2DcdVvBFkWbjAbB`,
+    `https://v2.convertapi.com/convert/pdf/to/webp?Secret=W2DcdVvBFkWbjAbB`,
     {
       Parameters: [
         {

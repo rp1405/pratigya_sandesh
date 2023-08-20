@@ -55,6 +55,7 @@ export default function Datapusher() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [isLoading, setIsLoading] = useState(0);
   const [paramDate, setParamDate] = useState(makeDate2(new Date()));
+  const [showCalendar, setShowCalendar] = useState(false);
   const folder = "/copies/" + paramDate + "/";
   console.log(folder);
   const uploadFile = async () => {
@@ -118,7 +119,11 @@ export default function Datapusher() {
         </label>
       </div>
       <div style={fileInputStyles.dateAndUpload}>
-        <DatePicker setParamDate={setParamDate} />
+        <DatePicker
+          setParamDate={setParamDate}
+          showCalendar={showCalendar}
+          setShowCalendar={setShowCalendar}
+        />
         <button style={fileInputStyles.button} onClick={uploadFile}>
           Upload
         </button>

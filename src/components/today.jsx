@@ -28,7 +28,7 @@ export default function Today() {
   const [totalPages, setTotalPages] = useState(4);
   const [showCalendar, setShowCalendar] = useState(false);
   const imageClass = {
-    maxWidth: "100vw",
+    maxWidth: "96%",
     position: "absolute",
     top: showCalendar ? "440px" : "150px",
   };
