@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { makeDate, makeDate2 } from "./date";
-function DatePicker({ setParamDate }) {
-  const [showCalendar, setShowCalendar] = useState(false);
+function DatePicker({ setParamDate, showCalendar, setShowCalendar }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [displayDate, setDisplayDate] = useState(makeDate2(selectedDate));
   const toggleCalendar = () => {
@@ -41,8 +40,8 @@ function DatePicker({ setParamDate }) {
     padding: "1rem",
     backgroundColor: "white",
     borderRadius: "4px",
-    width: "80%",
-    maxWidth: "400px",
+    width: "47vh",
+    maxWidth: "47vh",
     margin: "0 auto", // Center the container horizontally
     display: showCalendar ? "block" : "none",
   };

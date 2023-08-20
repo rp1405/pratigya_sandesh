@@ -56,6 +56,7 @@ export default function Datapusher() {
   const [isLoading, setIsLoading] = useState(0);
   const [paramDate, setParamDate] = useState(makeDate2(new Date()));
   const folder = "/copies/" + paramDate + "/";
+  console.log(folder);
   const uploadFile = async () => {
     if (selectedFile == null) {
       alert("Please select a file");
@@ -64,14 +65,12 @@ export default function Datapusher() {
       setIsLoading(1);
       try {
         const base64String = await Base64Converter(selectedFile);
-        //console.log(base64String);
         const images = await pdfToPng(base64String, selectedFile.name);
         console.log(images.data.Files);
         const imageData = images.data.Files;
-        imageData.map((obj, ind) => {
+        await imageData.map(async (obj, ind) => {
           const url = obj.Url;
-          console.log(url);
-          fetch(url)
+          await fetch(url)
             .then((res) => {
               return res.blob();
             })
